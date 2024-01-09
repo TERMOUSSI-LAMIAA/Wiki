@@ -12,6 +12,7 @@ class Wiki
         private $img;
         private $fk_aut_email;
         private $fk_cat;
+        //tags
         public function __construct($id_w,$titre,$contenu,$wiki_date,$isArchive,$img,$fk_aut_email,$fk_cat)
         {
                 $this->id_w = $id_w;         

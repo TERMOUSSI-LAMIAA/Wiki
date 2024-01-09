@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Tags</title>
+    <title>SB Admin 2 - Tables</title>
 
     <!-- Custom fonts for this template -->
     <link href="view\assets\vendor\fontawesome-free\css\all.min.css" rel="stylesheet" type="text/css">
@@ -64,7 +64,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Categories</span>
+                    <span>Categorie</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -219,116 +219,95 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tags</h1>
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
+
+
+                <div class="container-fluid">
+                    <!-- Add Category Form -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-pencil-alt"></i>
+                            Modifier tag
+                        </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Tag</th>
-                                            <th>Modifier</th>
-                                            <th>Supprimer</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($tags as $b) { ?>
-                                            <tr>
-                                                <td>
-                                                    <?= $b->getNom_tag(); ?>
-                                                </td>
-                                                <td><a href="index.php?action=updateTagShow&nom_tag=<?= $b->getNom_tag() ?>"
-                                                        class="btn btn-primary">Update</a></td>
-                                                <td> <a href="javascript:void(0);"
-                                                        onclick="confirmDelete('<?= $b->getNom_tag() ?>')"
-                                                        class="btn btn-danger">Delete</a></td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <form id="addTagForm" action="index.php?action=updtTag" method="POST"
+                                enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="categoryName">Nom Categorie:</label>
+                                    <input type="text" class="form-control" id="categoryName" name="old_nom_tag" value="<?= $tag->getNom_tag() ?>" required readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="categoryName">Nom Categorie:</label>
+                                    <input type="text" class="form-control" id="categoryName" name="new_nom_tag" value="<?= $tag->getNom_tag() ?>" required >
+                                </div>
+                                <button type="submit" class="btn btn-success">Enregistrer</button>
+                            </form>
                         </div>
                     </div>
-
+                    <!-- End Add Category Form -->
 
                 </div>
-                <!-- /.container-fluid -->
+                <!-- End of Main Content -->
+
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; Wiki 2024</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
 
             </div>
-            <!-- End of Main Content -->
+            <!-- End of Content Wrapper -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Wiki 2024</span>
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
                     </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="view\assets\vendor\jquery\jquery.min.js"></script>
-    <script src="view\assets\vendor\bootstrap\js\bootstrap.bundle.min.js"></script>
+         <!-- Bootstrap core JavaScript-->
+         <script src="view\assets\vendor\jquery\jquery.min.js"></script>
+        <script src="view\assets\vendor\bootstrap\js\bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="view\assets\vendor\jquery-easing\jquery.easing.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="view\assets\vendor\jquery-easing\jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="view\assets\js\sb-admin-2.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="view\assets\js\sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="view\assets\vendor\datatables\jquery.dataTables.min.js"></script>
-    <script src="view\assets\vendor\datatables\dataTables.bootstrap4.min.js"></script>
+        <!-- Page level plugins -->
+        <script src="view\assets\vendor\datatables\jquery.dataTables.min.js"></script>
+        <script src="view\assets\vendor\datatables\dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="view\assets\js\demo\datatables-demo.js"></script>
+        <!-- Page level custom scripts -->
+        <script src="view\assets\js\demo\datatables-demo.js"></script>
 
-    <!-- delete confirmation form -->
-    <script>
-        function confirmDelete(nomCat) {
-            var confirmDelete = confirm("Are you sure you want to delete the tag " + nomCat + "?");
 
-            if (confirmDelete) {
-                window.location.href = "index.php?action=deleteTag&nom_tag=" + nomCat;
-            }
-        }
-    </script>
 </body>
 
 </html>

@@ -55,14 +55,15 @@ if (isset($_GET['action'])) {
         case 'addTag':
             $controllerTag->addTagControllerAction();
             break;
-        // case 'addHoraire':
-        //     $controllerHoraire->addHoraireControllerAction();
+        // case 'deleteTag':
+        //     $controllerTag->
         //     break;
-        // case 'updateHorShow':
-        //     $controllerHoraire->updtHorController();
-        //     break;
-        // case 'deleteHor':
-        //     $controllerHoraire->deleteHorControllerAction();
+        case 'updateTagShow':
+            $controllerTag->updtTagController();
+            break;
+        case 'updtTag':
+            $controllerTag->updtCatgControllerAction();
+            break;
 
 
         // case 'homePage':

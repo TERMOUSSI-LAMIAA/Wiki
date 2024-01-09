@@ -29,28 +29,28 @@ class contoller_tag
             }
         }
     }
-    // public function updtCatgController()
-    // {
-    //     if (isset($_GET['nom_cat'])) {
-    //         $nom_cat= $_GET['nom_cat'];
-    //         $catgDAO = new CategorieDAO();
-    //         $catg= $catgDAO->getCatgByName($nom_cat);
-    //         include("view/admin/updtCatgs.php");
-    //     }
-    // }
-    // public function updtCatgControllerAction()
-    // {
-    //     try{
-    //         $catgDAO = new CategorieDAO();
-    //         $catgDAO->update_categorie();
-    //         header('Location: index.php?action=showCat');
-    //         exit;
-    //     }
-    //     catch (Exception $e) {
-    //         error_log('Error in updtCatgControllerAction:' . $e->getMessage(), 0);
-    //     }
+    public function updtTagController()
+    {
+        if (isset($_GET['nom_tag'])) {
+            $nom_tag= $_GET['nom_tag'];
+            $tagDAO = new TagDAO();
+            $tag=$tagDAO->getTagByName($nom_tag);
+            include("view/admin/updtTag.php");
+        }
+    }
+    public function updtCatgControllerAction()
+    {
+        try{
+            $tagDAO = new TagDAO();
+            $tagDAO->update_tag();
+            header('Location: index.php?action=showTag');
+            exit;
+        }
+        catch (Exception $e) {
+            error_log('Error in updtCatgControllerAction:' . $e->getMessage(), 0);
+        }
 
-    // }
+    }
     // public function deleteCatgControllerAction()
     // {
     //     $nom_cat= $_GET['nom_cat'];

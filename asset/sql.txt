@@ -27,12 +27,37 @@ nom_tag varchar(30) primary key);
 ///
 create table wiki_tag (
 fk_nom_tag varchar(30),
-FOREIGN KEY (fk_nom_tag) REFERENCES tag(nom_tag),
+FOREIGN KEY (fk_nom_tag) REFERENCES tag(nom_tag) ON UPDATE CASCADE,
 fk_id_w int,
-FOREIGN KEY (fk_id_w) REFERENCES wiki(id_w),
+FOREIGN KEY (fk_id_w) REFERENCES wiki(id_w) ON UPDATE CASCADE,
 primary key(fk_nom_tag,fk_id_w)
 );
 ///
 insert into categorie values
 ('Sante',NOW()),
 ('Sport',NOW());
+///
+if (isset($_POST['submit'])) {
+    $wikiContent = "your_wiki_content";  // Replace with your actual wiki content
+    $checkedTags = isset($_POST['tags']) ? $_POST['tags'] : [];
+
+    foreach ($checkedTags as $tag) {
+        $sql = "INSERT INTO wiki_tag (fk_nom_tag, fk_id_w) VALUES ('$tag', (SELECT id_w FROM wiki WHERE wiki_content = '$wikiContent'))";
+
+        if ($conn->query($sql) !== TRUE) {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
+
+    echo "Tags inserted successfully for the wiki content: $wikiContent";
+}
+**
+<form method="post">
+    <!-- Your other form fields -->
+
+    <input type="checkbox" name="tags[]" value="tag_1"> Tag 1
+    <input type="checkbox" name="tags[]" value="tag_2"> Tag 2
+    <!-- Add more checkboxes as needed -->
+
+    <input type="submit" name="submit" value="Submit">
+</form>
