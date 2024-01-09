@@ -3,11 +3,13 @@ include "controller/userController.php";
 include "controller/dashboardController.php";
 include "controller/categorieController.php";
 include "controller/tagController.php";
+include "controller/wikiController.php";
 
 $controllerUser = new contoller_Utilisateur();
 $controllerDashboard = new contoller_dashboard();
 $controllerCatg = new contoller_categorie();
 $controllerTag = new contoller_tag();
+$controllerWiki = new contoller_wiki();
 
 
 if (isset($_GET['action'])) {
@@ -64,15 +66,12 @@ if (isset($_GET['action'])) {
         case 'updtTag':
             $controllerTag->updtTagControllerAction();
             break;
-
-
-        // case 'homePage':
-        //     $controllerHome->getVilleHomeController();
-        //     break;
-        // case 'mainSearch':
-        //     $controllerHome->getSearchedHoraireController();
-
-        //     break;
+        case 'archivWiki':
+            $controllerWiki->archiveWikiController();
+            break;
+        case 'showWiki':
+            $controllerWiki->getWikiController();
+            break;
         // case 'entrepFilter':
         //     $controllerDetail->filterController();
         //     break;
