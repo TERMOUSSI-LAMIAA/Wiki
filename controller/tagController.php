@@ -32,31 +32,30 @@ class contoller_tag
     public function updtTagController()
     {
         if (isset($_GET['nom_tag'])) {
-            $nom_tag= $_GET['nom_tag'];
+            $nom_tag = $_GET['nom_tag'];
             $tagDAO = new TagDAO();
-            $tag=$tagDAO->getTagByName($nom_tag);
+            $tag = $tagDAO->getTagByName($nom_tag);
             include("view/admin/updtTag.php");
         }
     }
-    public function updtCatgControllerAction()
+    public function updtTagControllerAction()
     {
-        try{
+        try {
             $tagDAO = new TagDAO();
             $tagDAO->update_tag();
             header('Location: index.php?action=showTag');
             exit;
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             error_log('Error in updtCatgControllerAction:' . $e->getMessage(), 0);
         }
 
     }
-    // public function deleteCatgControllerAction()
-    // {
-    //     $nom_cat= $_GET['nom_cat'];
-    //     $catgDAO = new CategorieDAO();
-    //     $catgDAO->delete_categorie($nom_cat);
-    //     header('Location: index.php?action=showCat');
-    //     exit;
-    // }
+    public function deleteTagControllerAction()
+    {
+        $nom_tag = $_GET['nom_tag'];
+        $tagDAO = new TagDAO();
+        $tagDAO->delete_tag($nom_tag);
+        header('Location: index.php?action=showTag');
+        exit;
+    }
 }

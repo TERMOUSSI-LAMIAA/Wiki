@@ -73,4 +73,16 @@ class TagDAO
             }
         }
     }
+    public function delete_tag($nom_tag){
+        try {
+            $query = "delete from tag where nom_tag=:nom_tag";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':nom_tag', $nom_tag);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
 }

@@ -55,14 +55,14 @@ if (isset($_GET['action'])) {
         case 'addTag':
             $controllerTag->addTagControllerAction();
             break;
-        // case 'deleteTag':
-        //     $controllerTag->
-        //     break;
+        case 'deleteTag':
+            $controllerTag->deleteTagControllerAction(); 
+            break;
         case 'updateTagShow':
             $controllerTag->updtTagController();
             break;
         case 'updtTag':
-            $controllerTag->updtCatgControllerAction();
+            $controllerTag->updtTagControllerAction();
             break;
 
 

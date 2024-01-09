@@ -321,11 +321,11 @@
 
     <!-- delete confirmation form -->
     <script>
-        function confirmDelete(nomCat) {
-            var confirmDelete = confirm("Are you sure you want to delete the tag " + nomCat + "?");
+        function confirmDelete(nomTag) {
+            var confirmDelete = confirm("Are you sure you want to delete the tag " + nomTag + "?");
 
             if (confirmDelete) {
-                window.location.href = "index.php?action=deleteTag&nom_tag=" + nomCat;
+                window.location.href = "index.php?action=deleteTag&nom_tag=" + nomTag;
             }
         }
     </script>
