@@ -21,40 +21,29 @@ class CategorieDAO
         }
         return $catgs;
     }
-//     public function insert_bus()
-//     {
-//         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//             // Get values from $_POST
-//             $immat = $_POST["immatriculation"];
-//             $numbus = $_POST["numero_bus"];
-//             $capacite = $_POST["capacite"];
-//             $fk_idEn = $_POST["fk_idEn"];
+    public function insert_catg()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $nom_cat = $_POST["nom_cat"];
+            $cat_date = $_POST["cat_date"];
+            try {
+                $query = "INSERT INTO categorie (nom_cat, cat_date) VALUES (:nom_cat, :cat_date)";
+                $stmt = $this->db->prepare($query);
 
-//             try {
-//                 // Prepare the SQL statement
-//                 $query = "INSERT INTO bus (immat, numbus, capacite, fk_idEn) VALUES (:immat, :numbus, :capacite, :fk_idEn)";
-//                 $stmt = $this->db->prepare($query);
+                $stmt->bindParam(':nom_cat', $nom_cat);
+                $stmt->bindParam(':cat_date', $cat_date);
+                $stmt->execute();
+                return true;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+        // Return false if the form is not submitted
+        return false;
+    }
 
-//                 // Bind parameters
-//                 $stmt->bindParam(':immat', $immat);
-//                 $stmt->bindParam(':numbus', $numbus);
-//                 $stmt->bindParam(':capacite', $capacite);
-//                 $stmt->bindParam(':fk_idEn', $fk_idEn);
-//                 // Execute the statement
-//                 $stmt->execute();
-//                 // Return true on success
-//                 return true;
-//             } catch (PDOException $e) {
-//                 // Handle the exception (e.g., log error, return false)
-//                 // You might want to handle the error more gracefully in a production environment
-//                 echo "Error: " . $e->getMessage();
-//                 return false;
-//             }
-//         }
 
-//         // Return false if the form is not submitted
-//         return false;
-//     }
 //     public function getBusByImmat($immat)
 //     {
 //         $query = "SELECT * FROM bus WHERE immat = :immat";

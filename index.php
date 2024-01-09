@@ -5,7 +5,7 @@ include "controller/categorieController.php";
 
 $controllerUser = new contoller_Utilisateur();
 $controllerDashboard = new contoller_dashboard();
-$controllerCatg= new contoller_categorie();
+$controllerCatg = new contoller_categorie();
 
 
 if (isset($_GET['action'])) {
@@ -29,12 +29,12 @@ if (isset($_GET['action'])) {
         case 'showCat':
             $controllerCatg->getCatgController();
             break;
-        case 'addCat':
-            $controllerCatg->
+        case 'addCatForm':
+            $controllerCatg->addCatgController();
             break;
-        // case 'addRouteform':
-        //     $controllerRoute->addRouteController();
-        //     break;
+        case 'addCat':
+            $controllerCatg->addCatgControllerAction();
+            break;
         // case 'addRoute':
         //     $controllerRoute->addRouteControllerAction();
         //     break;
@@ -61,8 +61,8 @@ if (isset($_GET['action'])) {
         //     break;
         // case 'deleteHor':
         //     $controllerHoraire->deleteHorControllerAction();
-  
-      
+
+
         // case 'homePage':
         //     $controllerHome->getVilleHomeController();
         //     break;

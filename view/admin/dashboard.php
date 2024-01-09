@@ -67,7 +67,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion Categories:</h6>
                         <a class="collapse-item" href="index.php?action=showCat">Modifier / Supprimer</a>
-                        <a class="collapse-item" href="index.php?action=addCat">Ajouter</a>
+                        <a class="collapse-item" href="index.php?action=addCatForm">Ajouter</a>
                     </div>
                 </div>
             </li>
