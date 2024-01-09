@@ -10,6 +10,11 @@ class contoller_wiki
         $wikis = $wikiDAO->get_wiki();
         include 'view/admin/archiveWiki.php';
     }
+    function getWikiAutController(){///!!!!
+        $wikiDAO = new WikiDAO();
+        $wikis = $wikiDAO->get_wiki();
+        include 'view/auteur/showWiki.php';
+    }
     function archiveWikiController()
     {
         if (isset($_GET['id_w'])) {

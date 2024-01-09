@@ -72,9 +72,9 @@ if (isset($_GET['action'])) {
         case 'showWiki':
             $controllerWiki->getWikiController();
             break;
-        // case 'entrepFilter':
-        //     $controllerDetail->filterController();
-        //     break;
+        case 'showWikiAut':
+            $controllerWiki->getWikiAutController();
+            break;
         // case 'priceFilter':
         //     $controllerDetail->filterController();
         //     break;

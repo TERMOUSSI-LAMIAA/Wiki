@@ -59,11 +59,12 @@ class UtilisateurDAO
                 if ($user) {
                     // if (password_verify($password, $user['pswd'])) {
                     if ($password === $user['pswd']) {
-                        if ($user['role'] === 'admin') {
-                            return true;
-                        } else {
-                            return false;
-                        }
+                        // if ($user['role'] === 'admin') {
+                        //     return true;
+                        // } else {
+                        //     return false;
+                        // }
+                        return $user['role'];
                     } else {
                         return false;
                     }

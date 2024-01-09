@@ -10,7 +10,7 @@ class contoller_Utilisateur
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userDAO = new UtilisateurDAO();
             $inserted = $userDAO->insert_user();
-  
+
             if ($inserted) {
                 header('Location: index.php?action=loginForm');
                 exit();
@@ -23,16 +23,21 @@ class contoller_Utilisateur
     {
         include "view/register.php";
     }
-    function formLoginUserController(){
+    function formLoginUserController()
+    {
         include "view/login.php";
     }
-    function loginUserController(){
+    function loginUserController()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userDAO = new UtilisateurDAO();
             $logged = $userDAO->login_user();
             // var_dump($logged);
-            if ($logged) {
+            if ($logged === "admin") {
                 header('Location: index.php?action=dashboard');
+                exit();
+            } elseif ($logged === "auteur") {
+                header('Location: index.php?action=showWikiAut');
                 exit();
             } else {
                 echo 'login error';

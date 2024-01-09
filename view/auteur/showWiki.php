@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Categories</title>
+    <title>Wikis</title>
 
     <!-- Custom fonts for this template -->
     <link href="view\assets\vendor\fontawesome-free\css\all.min.css" rel="stylesheet" type="text/css">
@@ -45,14 +45,14 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <!-- <li class="nav-item active">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
-            </li>
+            </li> -->
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <!-- <hr class="sidebar-divider"> -->
 
             <!-- Heading -->
             <!-- <div class="sidebar-heading">
@@ -64,11 +64,11 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Categories</span>
+                    <span>Wikis</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Gestion Categories:</h6>
+                        <h6 class="collapse-header">Gestion wikis:</h6>
                         <a class="collapse-item" href="buttons.html">Modifier / Supprimer</a>
                         <a class="collapse-item" href="cards.html">Ajouter</a>
                     </div>
@@ -76,7 +76,7 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
@@ -90,10 +90,10 @@
                         <a class="collapse-item" href="utilities-border.html">Ajouter</a>
                     </div>
                 </div>
-            </li>
+            </li> -->
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <!-- <hr class="sidebar-divider"> -->
 
             <!-- Heading -->
             <!-- <div class="sidebar-heading">
@@ -101,7 +101,7 @@
             </div> -->
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
@@ -112,7 +112,7 @@
                         <a class="collapse-item" href="login.html">Archiver</a>
                     </div>
                 </div>
-            </li>
+            </li> -->
 
 
             <!-- Divider -->
@@ -261,8 +261,11 @@
                                                 <td>
                                                     <?= $b->getFk_cat(); ?>
                                                 </td>
-                                                <td><a href="index.php?action=archivWiki&id_w=<?= $b->getId_w() ?>"
-                                                        class="btn btn-warning">Archiver</a>
+                                                <td><a href="index.php?action=updateWikiShow&id_w=<?= $b->getId_w() ?>"
+                                                        class="btn btn-primary">Update</a>
+                                                    <a href="javascript:void(0);"
+                                                        onclick="confirmDelete('<?= $b->getId_w() ?>')"
+                                                        class="btn btn-danger">Delete</a>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -337,6 +340,16 @@
     <!-- Page level custom scripts -->
     <script src="view\assets\js\demo\datatables-demo.js"></script>
 
+    <!-- delete confirmation form -->
+    <script>
+        function confirmDelete(id_w) {
+            var confirmDelete = confirm("Are you sure you want to delete the wiki " + id_w + "?");
+
+            if (confirmDelete) {
+                window.location.href = "index.php?action=deleteWiki&id_w=" + id_w;
+            }
+        }
+    </script>
 </body>
 
 </html>
