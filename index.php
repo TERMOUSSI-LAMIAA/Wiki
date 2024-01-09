@@ -1,10 +1,11 @@
 <?php
 include "controller/userController.php";
 include "controller/dashboardController.php";
+include "controller/categorieController.php";
 
 $controllerUser = new contoller_Utilisateur();
 $controllerDashboard = new contoller_dashboard();
-
+$controllerCatg= new contoller_categorie();
 
 
 if (isset($_GET['action'])) {
@@ -25,12 +26,12 @@ if (isset($_GET['action'])) {
         case 'dashboard':
             $controllerDashboard->getDashboardController();
             break;
-        // case 'deleteBus':
-        //     $controllerBus->deleteBusControllerAction();
-        //     break;
-        // case 'showRoute':
-        //     $controllerRoute->getRouteController();
-        //     break;
+        case 'showCat':
+            $controllerCatg->getCatgController();
+            break;
+        case 'addCat':
+            $controllerCatg->
+            break;
         // case 'addRouteform':
         //     $controllerRoute->addRouteController();
         //     break;

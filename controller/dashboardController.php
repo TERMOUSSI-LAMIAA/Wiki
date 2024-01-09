@@ -9,5 +9,4 @@ class contoller_dashboard
         include('view/admin/dashboard.php');
     }
   
-
 }
