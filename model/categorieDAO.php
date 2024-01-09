@@ -42,67 +42,41 @@ class CategorieDAO
         // Return false if the form is not submitted
         return false;
     }
+    public function getCatgByName($nom_cat)
+    {
+        $query = "SELECT * FROM categorie WHERE nom_cat = :nom_cat";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(":nom_cat", $nom_cat, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        if ($result) {
+            return new Categorie($result["nom_cat"], $result["cat_date"]);
+        } else {
+            return null;
+        }
 
-//     public function getBusByImmat($immat)
-//     {
-//         $query = "SELECT * FROM bus WHERE immat = :immat";
-//         $stmt = $this->db->prepare($query);
-//         $stmt->bindParam(":immat", $immat, PDO::PARAM_STR);
-//         $stmt->execute();
+    }
 
-//         // Fetch the result
-//         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    public function update_categorie()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $nom_cat = $_POST["nom_cat"];
+            $cat_date = $_POST["cat_date"];
+            try {
+                $query = "update categorie set cat_date=:cat_date where nom_cat=:nom_cat";
+                $stmt = $this->db->prepare($query);
+                $stmt->bindParam(':nom_cat', $nom_cat);
+                $stmt->bindParam(':cat_date', $cat_date);
+                $stmt->execute();
 
-//         if ($result) {
-//             // Create a Bus object using the fetched data
-//             return new Bus($result["immat"], $result["numbus"], $result["capacite"], $result["fk_idEn"]);
-//         } else {
-//             // Return null or handle the case where the bus with given immat is not found
-//             return null;
-//         }
-//     }
-
-//     public function updateBus()
-//     {
-//         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//             // Get values from $_POST
-//             $immat = $_POST["immatriculation"];
-//             $numbus = $_POST["numero_bus"];
-//             $capacite = $_POST["capacite"];
-//             $fk_idEn = $_POST["fk_idEn"];
-
-//             try {
-//                 // Prepare the SQL statement
-//                 $query = "update bus set  numbus=:numbus, capacite=:capacite, fk_idEn=:fk_idEn WHERE immat=:immat";
-//                 $stmt = $this->db->prepare($query);
-//                 // Bind parameters
-//                 $stmt->bindParam(':immat', $immat);
-//                 $stmt->bindParam(':numbus', $numbus);
-//                 $stmt->bindParam(':capacite', $capacite);
-//                 $stmt->bindParam(':fk_idEn', $fk_idEn);
-//                 $stmt->execute();
-//                 // Return true on success
-//                 return true;
-//             } catch (PDOException $e) {
-//                 echo "Error: " . $e->getMessage();
-//                 return false;
-//             }
-//         }
-//     }
-//     function deleteBus($immat)
-//     {
-//         try {
-//             $query = "delete from bus where immat=:immat";
-//             $stmt = $this->db->prepare($query);
-//             $stmt->bindParam(':immat', $immat);
-//             $stmt->execute();
-//             return true;
-//         } catch (PDOException $e) {
-//             echo "Error: " . $e->getMessage();
-//             return false;
-//         }
-//     }
+                return true;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+    }
 }
 
 ?>

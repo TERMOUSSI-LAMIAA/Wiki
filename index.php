@@ -35,12 +35,12 @@ if (isset($_GET['action'])) {
         case 'addCat':
             $controllerCatg->addCatgControllerAction();
             break;
-        // case 'addRoute':
-        //     $controllerRoute->addRouteControllerAction();
-        //     break;
-        // case 'updateRouteShow':
-        //     $controllerRoute->updtRouteController();
-        //     break;
+        case 'updateCatShow':
+            $controllerCatg->updtCatgController();
+            break;
+        case 'updtCat':
+            $controllerCatg->updtCatgControllerAction();
+            break;
         // case 'updtRoute':
         //     $controllerRoute->updtRouteControllerAction();
         //     break;

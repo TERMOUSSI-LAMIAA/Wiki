@@ -238,7 +238,7 @@
                                     <input type="datetime-local" class="form-control" id="creationDatetime"
                                         name="cat_date" required>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Ajouter</button>
+                                <button type="submit" class="btn btn-success">Ajouter</button>
                             </form>
                         </div>
                     </div>

@@ -245,10 +245,8 @@
                                                 <td>
                                                     <?= $b->getCat_date(); ?>
                                                 </td>
-                                                <td><button class="btn btn-primary" data-toggle="modal"
-                                                        data-target="#updateFormModal">
-                                                        Update
-                                                    </button></td>
+                                                <td><a href="index.php?action=updateCatShow&nom_cat=<?= $b->getNom_cat() ?>"
+                                                        class="btn btn-primary">Update</a></td>
                                                 <td> <button class="btn btn-danger" data-toggle="modal"
                                                         data-target="#deleteConfirmationModal">
                                                         Delete
