@@ -61,12 +61,14 @@ class CategorieDAO
     public function update_categorie()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $nom_cat = $_POST["nom_cat"];
+            $new_nom_cat = $_POST["new_nom_cat"];
+            $old_nom_cat = $_POST["old_nom_cat"];
             $cat_date = $_POST["cat_date"];
             try {
-                $query = "update categorie set cat_date=:cat_date where nom_cat=:nom_cat";
+                $query = "update categorie set nom_cat=:new_nom_cat ,cat_date=:cat_date where nom_cat=:old_nom_cat";
                 $stmt = $this->db->prepare($query);
-                $stmt->bindParam(':nom_cat', $nom_cat);
+                $stmt->bindParam(':new_nom_cat', $new_nom_cat);
+                $stmt->bindParam(':old_nom_cat', $old_nom_cat);
                 $stmt->bindParam(':cat_date', $cat_date);
                 $stmt->execute();
 

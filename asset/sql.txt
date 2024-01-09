@@ -37,6 +37,8 @@ insert into categorie values
 ('Sante',NOW()),
 ('Sport',NOW());
 ///
+ALTER TABLE `wiki` DROP FOREIGN KEY `wiki_ibfk_2`; ALTER TABLE `wiki` ADD CONSTRAINT `wiki_ibfk_2` FOREIGN KEY (`fk_cat`) REFERENCES `categorie`(`nom_cat`) ON DELETE RESTRICT ON UPDATE CASCADE; 
+**********//
 if (isset($_POST['submit'])) {
     $wikiContent = "your_wiki_content";  // Replace with your actual wiki content
     $checkedTags = isset($_POST['tags']) ? $_POST['tags'] : [];

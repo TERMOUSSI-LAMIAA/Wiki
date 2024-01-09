@@ -234,12 +234,18 @@
                                 enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="categoryName">Nom Categorie:</label>
-                                    <input type="text" class="form-control" id="categoryName" name="nom_cat" value="<?= $catg->getNom_cat() ?>" required readonly>
+                                    <input type="text" class="form-control" id="categoryName" name="old_nom_cat"
+                                        value="<?= $catg->getNom_cat() ?>" required readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="categoryName">Nouveau nom Categorie:</label>
+                                    <input type="text" class="form-control" id="categoryName" name="new_nom_cat"
+                                        value="<?= $catg->getNom_cat() ?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="creationDatetime">Date and Time of Creation:</label>
                                     <input type="datetime-local" class="form-control" id="creationDatetime"
-                                        name="cat_date" value="<?= $catg->getCat_date() ?>"  required>
+                                        name="cat_date" value="<?= $catg->getCat_date() ?>" required>
                                 </div>
                                 <button type="submit" class="btn btn-success">Enregistrer</button>
                             </form>
@@ -291,8 +297,8 @@
             </div>
         </div>
 
-         <!-- Bootstrap core JavaScript-->
-         <script src="view\assets\vendor\jquery\jquery.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="view\assets\vendor\jquery\jquery.min.js"></script>
         <script src="view\assets\vendor\bootstrap\js\bootstrap.bundle.min.js"></script>
 
         <!-- Core plugin JavaScript-->
