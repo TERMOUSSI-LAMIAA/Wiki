@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Categories-add</title>
+    <title>Tags-add</title>
 
     <!-- Custom fonts for this template -->
     <link href="view\assets\vendor\fontawesome-free\css\all.min.css" rel="stylesheet" type="text/css">
@@ -224,19 +224,14 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-plus-circle"></i>
-                            Ajouter Categorie
+                            Ajouter Tag
                         </div>
                         <div class="card-body">
-                            <form id="addCategoryForm" action="index.php?action=addCat" method="POST"
+                            <form id="addCategoryForm" action="index.php?action=addTag" method="POST"
                                 enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label for="categoryName">Nom Categorie:</label>
-                                    <input type="text" class="form-control" id="categoryName" name="nom_cat" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="creationDatetime">Date and Time of Creation:</label>
-                                    <input type="datetime-local" class="form-control" id="creationDatetime"
-                                        name="cat_date" required>
+                                    <label for="categoryName">Nom tag:</label>
+                                    <input type="text" class="form-control" id="categoryName" name="nom_tag" required>
                                 </div>
                                 <button type="submit" class="btn btn-success">Ajouter</button>
                             </form>
@@ -306,16 +301,6 @@
         <script src="view\assets\js\demo\datatables-demo.js"></script>
 
 
-        <!-- current time -->
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                var now = new Date();
-                var timezoneOffset = now.getTimezoneOffset();
-                now.setMinutes(now.getMinutes() - timezoneOffset); // Adjust for local timezone
-                var formattedNow = now.toISOString().slice(0, 16); // Format: YYYY-MM-DDTHH:mm
-                document.getElementById("creationDatetime").value = formattedNow;
-            });
-        </script>
 </body>
 
 </html>

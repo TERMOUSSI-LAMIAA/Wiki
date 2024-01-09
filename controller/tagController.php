@@ -11,23 +11,24 @@ class contoller_tag
         include 'view/admin/showTags.php';
     }
 
-    // function addCatgController(){
-    //     include 'view\admin\addCatg.php';
-    // }
+    function addTagController()
+    {
+        include 'view\admin\addTag.php';
+    }
 
-    // function addCatgControllerAction()
-    // {
-    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //         $catgDAO = new CategorieDAO();
-    //         $inserted = $catgDAO->insert_catg();
-    //         if ($inserted) {
-    //             header('Location: index.php?action=showCat');
-    //             exit();
-    //         } else {
-    //             echo 'Adding error';
-    //         }
-    //     }
-    // }
+    function addTagControllerAction()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $tagDAO = new TagDAO();
+            $inserted = $tagDAO->insert_tag();
+            if ($inserted) {
+                header('Location: index.php?action=showTag');
+                exit();
+            } else {
+                echo 'Adding error';
+            }
+        }
+    }
     // public function updtCatgController()
     // {
     //     if (isset($_GET['nom_cat'])) {

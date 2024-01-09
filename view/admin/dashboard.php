@@ -84,7 +84,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion Tags:</h6>
                         <a class="collapse-item" href="index.php?action=showTag">Modifier / Supprimer</a>
-                        <a class="collapse-item" href="utilities-border.html">Ajouter</a>
+                        <a class="collapse-item" href="index.php?action=addTagForm">Ajouter</a>
                     </div>
                 </div>
             </li>
@@ -111,7 +111,7 @@
                 </div>
             </li>
 
-           
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -184,8 +184,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

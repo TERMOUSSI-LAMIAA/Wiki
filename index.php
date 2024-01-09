@@ -49,12 +49,12 @@ if (isset($_GET['action'])) {
         case 'showTag':
             $controllerTag->getTagController();
             break;
-        // case 'showHoraire':
-        //     $controllerHoraire->getHoraireController();
-        //     break;
-        // case 'addHoraireform':
-        //     $controllerHoraire->addHoraireController();
-        //     break;
+        case 'addTagForm':
+            $controllerTag->addTagController();
+            break;
+        case 'addTag':
+            $controllerTag->addTagControllerAction();
+            break;
         // case 'addHoraire':
         //     $controllerHoraire->addHoraireControllerAction();
         //     break;
