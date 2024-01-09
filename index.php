@@ -2,10 +2,12 @@
 include "controller/userController.php";
 include "controller/dashboardController.php";
 include "controller/categorieController.php";
+include "controller/tagController.php";
 
 $controllerUser = new contoller_Utilisateur();
 $controllerDashboard = new contoller_dashboard();
 $controllerCatg = new contoller_categorie();
+$controllerTag = new contoller_tag();
 
 
 if (isset($_GET['action'])) {
@@ -44,9 +46,9 @@ if (isset($_GET['action'])) {
         case 'deleteCat':
             $controllerCatg->deleteCatgControllerAction();
             break;
-        // case 'deleteRouteShow':
-        //     $controllerRoute->deleteRouteControllerAction();
-        //     break;
+        case 'showTag':
+            $controllerTag->getTagController();
+            break;
         // case 'showHoraire':
         //     $controllerHoraire->getHoraireController();
         //     break;
