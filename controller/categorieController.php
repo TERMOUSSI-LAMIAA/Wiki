@@ -50,4 +50,12 @@ class contoller_categorie
         }
 
     }
+    public function deleteCatgControllerAction()
+    {
+        $nom_cat= $_GET['nom_cat'];
+        $catgDAO = new CategorieDAO();
+        $catgDAO->delete_categorie($nom_cat);
+        header('Location: index.php?action=showCat');
+        exit;
+    }
 }

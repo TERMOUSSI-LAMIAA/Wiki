@@ -41,9 +41,9 @@ if (isset($_GET['action'])) {
         case 'updtCat':
             $controllerCatg->updtCatgControllerAction();
             break;
-        // case 'updtRoute':
-        //     $controllerRoute->updtRouteControllerAction();
-        //     break;
+        case 'deleteCat':
+            $controllerCatg->deleteCatgControllerAction();
+            break;
         // case 'deleteRouteShow':
         //     $controllerRoute->deleteRouteControllerAction();
         //     break;

@@ -247,70 +247,13 @@
                                                 </td>
                                                 <td><a href="index.php?action=updateCatShow&nom_cat=<?= $b->getNom_cat() ?>"
                                                         class="btn btn-primary">Update</a></td>
-                                                <td> <button class="btn btn-danger" data-toggle="modal"
-                                                        data-target="#deleteConfirmationModal">
-                                                        Delete
-                                                    </button></td>
+                                                <td> <a href="javascript:void(0);"
+                                                        onclick="confirmDelete('<?= $b->getNom_cat() ?>')"
+                                                        class="btn btn-danger">Delete</a></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Update Form Modal -->
-                    <div class="modal fade" id="updateFormModal" tabindex="-1" role="dialog"
-                        aria-labelledby="updateFormModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="updateFormModalLabel">Update Form</h5>
-                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-
-                                    <!-- Update Form -->
-                                    <form id="updateForm" action="update_process.php" method="post">
-                                        <!-- Add your input fields for update here -->
-                                        <div class="form-group">
-                                            <label for="updateField1">Field 1:</label>
-                                            <input type="text" class="form-control" id="updateField1"
-                                                name="updateField1">
-                                        </div>
-                                        <!-- Add more fields as needed -->
-
-                                        <button type="submit" class="btn btn-primary">Update</button>
-                                    </form>
-                                    <!-- End Update Form -->
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Update Form Modal -->
-                    <!-- Delete Confirmation Modal -->
-                    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog"
-                        aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="deleteConfirmationModalLabel">Delete Confirmation</h5>
-                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    Are you sure you want to delete this item?
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                    <button class="btn btn-danger" id="deleteItemBtn">Delete</button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -380,6 +323,16 @@
     <!-- Page level custom scripts -->
     <script src="view\assets\js\demo\datatables-demo.js"></script>
 
+    <!-- delete confirmation form -->
+    <script>
+        function confirmDelete(nomCat) {
+            var confirmDelete = confirm("Are you sure you want to delete the category " + nomCat + "?");
+
+            if (confirmDelete) {
+                window.location.href = "index.php?action=deleteCat&nom_cat=" + nomCat;
+            }
+        }
+    </script>
 </body>
 
 </html>

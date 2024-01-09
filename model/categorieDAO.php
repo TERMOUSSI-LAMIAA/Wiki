@@ -77,6 +77,19 @@ class CategorieDAO
             }
         }
     }
+    public function delete_categorie($nom_cat)
+    {
+        try {
+            $query = "delete from categorie where nom_cat=:nom_cat";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':nom_cat', $nom_cat);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
 }
 
 ?>
