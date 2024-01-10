@@ -13,6 +13,7 @@ class contoller_wiki
         $action = isset($_GET['action']) ? $_GET['action'] : 'home';
         $wikiDAO = new WikiDAO();
         $wikis = $wikiDAO->get_wiki();
+        $recwikis = $wikiDAO->get_wiki(null,$action);
         if ($action === 'archivWiki') {
             include 'view/admin/archiveWiki.php';
         } elseif ($action === 'home') {
