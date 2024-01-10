@@ -139,11 +139,13 @@
                                             </strong>
                                         </p>
                                         <h6> Titre:
-                                            <strong>
-                                                <q>
-                                                    <?= $b->getTitre(); ?>
-                                                </q>
-                                            </strong>
+                                            <a href="index.php?action=detailWiki&id_w=<?= $b->getId_w(); ?>"
+                                                class="card-title-link">
+                                                <strong>
+                                                    <q>
+                                                        <?= $b->getTitre(); ?>
+                                                    </q>
+                                                </strong></a>
                                         </h6>
                                         <img src="data:image/jpeg;base64,<?= base64_encode($b->getImg()); ?>" alt="image"
                                             class="img-fluid mb-3" style="max-height: 100px;">
@@ -199,11 +201,13 @@
                                             </strong>
                                         </p>
                                         <h6> Titre:
-                                            <strong>
-                                                <q>
-                                                    <?= $b->getTitre(); ?>
-                                                </q>
-                                            </strong>
+                                            <a href="index.php?action=detailWiki&id_w=<?= $b->getId_w(); ?>"
+                                                class="card-title-link">
+                                                <strong>
+                                                    <q>
+                                                        <?= $b->getTitre(); ?>
+                                                    </q>
+                                                </strong></a>
                                         </h6>
                                         <img src="data:image/jpeg;base64,<?= base64_encode($b->getImg()); ?>" alt="image"
                                             class="img-fluid mb-3" style="max-height: 100px;">

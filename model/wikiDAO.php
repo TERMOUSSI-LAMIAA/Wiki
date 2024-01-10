@@ -42,6 +42,31 @@ class WikiDAO
 
         return $wikis;
     }
+    public function get_wikiByID($id_w) {
+        $tagDAO = new TagDAO();
+        $query = "SELECT * FROM wiki WHERE id_w = :id AND isArchive = 0";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id', $id_w, PDO::PARAM_INT);
+        $stmt->execute();
+        $wikiData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($wikiData) {
+            $tags = $tagDAO->getTagsByWiki($wikiData["id_w"]);
+            $wiki = new Wiki(
+                $wikiData["id_w"],
+                $wikiData["titre"],
+                $wikiData["contenu"],
+                $wikiData["wiki_date"],
+                $wikiData["isArchive"],
+                $wikiData["img"],
+                $wikiData["fk_aut_email"],
+                $wikiData["fk_cat"]
+            );
+            $wiki->setTags($tags);
+            return $wiki;
+        }
+        return null; //  wiki with given ID is not found
+    }
     public function archive_wiki($id_w)
     {
         try {

@@ -13,13 +13,23 @@ class contoller_wiki
         $action = isset($_GET['action']) ? $_GET['action'] : 'home';
         $wikiDAO = new WikiDAO();
         $wikis = $wikiDAO->get_wiki();
-        $recwikis = $wikiDAO->get_wiki(null,$action);
+        $recwikis = $wikiDAO->get_wiki(null, $action);
         if ($action === 'archivWiki') {
             include 'view/admin/archiveWiki.php';
         } elseif ($action === 'home') {
             $catgDAO = new CategorieDAO();
             $reccatgs = $catgDAO->get_categorie($action);
             include 'view/home.php';
+        } elseif ($action === 'detailWiki') {
+            if (isset($_GET['id_w'])) {
+                $id_w = $_GET['id_w'];
+                $wiki = $wikiDAO->get_wikiByID($id_w);
+                if ($wiki !== null) {
+                    include 'view/details.php';
+                } else {
+                    echo 'Wiki not found';
+                }
+            } 
         } else {
             echo 'no action found';
         }

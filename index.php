@@ -89,6 +89,9 @@ if (isset($_GET['action'])) {
         case 'home':
             $controllerHome->getHomeController();
             break;
+        case 'detailWiki':
+            $controllerHome->getHomeController();
+            break;
     }
 
 } else {
