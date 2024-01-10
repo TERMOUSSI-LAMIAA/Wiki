@@ -17,6 +17,8 @@ class contoller_wiki
         if ($action === 'archivWiki') {
             include 'view/admin/archiveWiki.php';
         } elseif ($action === 'home') {
+            $catgDAO = new CategorieDAO();
+            $reccatgs = $catgDAO->get_categorie($action);
             include 'view/home.php';
         } else {
             echo 'no action found';

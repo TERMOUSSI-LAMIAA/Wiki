@@ -247,10 +247,21 @@
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Les catégories récents</h6>
                                 </div>
-                                <div class="card-body">
-                                    <p class="text-xs">.text-xs</p>
-                                    <p class="text-lg mb-0">.text-lg</p>
-                                </div>
+                                <?php foreach ($reccatgs as $b): ?>
+                                    <div class="card-body">
+                                        <p> Categorie:
+                                            <strong>
+                                                <?= $b->getNom_cat(); ?>
+                                            </strong>
+                                        </p>
+                                        <p>
+                                            <i>
+                                                <?= $b->getCat_date(); ?>
+                                            </i>
+                                        </p>
+                                    </div>
+                                    <hr>
+                                <?php endforeach; ?>
                             </div>
 
                         </div>

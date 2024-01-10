@@ -9,9 +9,12 @@ class CategorieDAO
         $this->db = Database::getInstance()->getConnection();
     }
 
-    public function get_categorie()
+    public function get_categorie($action="")
     {
         $query = "SELECT * FROM categorie";
+        if ($action === 'home') {
+            $query .= " order by cat_date desc limit 5";
+        }
         $stmt = $this->db->query($query);
         $stmt->execute();
         $catgData = $stmt->fetchAll();

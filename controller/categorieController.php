@@ -11,7 +11,8 @@ class contoller_categorie
         include 'view/admin/showCatgs.php';
     }
 
-    function addCatgController(){
+    function addCatgController()
+    {
         include 'view\admin\addCatg.php';
     }
 
@@ -31,28 +32,27 @@ class contoller_categorie
     public function updtCatgController()
     {
         if (isset($_GET['nom_cat'])) {
-            $nom_cat= $_GET['nom_cat'];
+            $nom_cat = $_GET['nom_cat'];
             $catgDAO = new CategorieDAO();
-            $catg= $catgDAO->getCatgByName($nom_cat);
+            $catg = $catgDAO->getCatgByName($nom_cat);
             include("view/admin/updtCatgs.php");
         }
     }
     public function updtCatgControllerAction()
     {
-        try{
+        try {
             $catgDAO = new CategorieDAO();
             $catgDAO->update_categorie();
             header('Location: index.php?action=showCat');
             exit;
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             error_log('Error in updtCatgControllerAction:' . $e->getMessage(), 0);
         }
 
     }
     public function deleteCatgControllerAction()
     {
-        $nom_cat= $_GET['nom_cat'];
+        $nom_cat = $_GET['nom_cat'];
         $catgDAO = new CategorieDAO();
         $catgDAO->delete_categorie($nom_cat);
         header('Location: index.php?action=showCat');
