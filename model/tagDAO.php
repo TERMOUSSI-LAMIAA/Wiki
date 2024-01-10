@@ -40,6 +40,26 @@ class TagDAO
         // Return false if the form is not submitted
         return false;
     }
+    public function getTagsByWiki($id_w)
+    {
+        try {
+            $query = "select tag.nom_tag,wiki_tag.fk_id_w from tag join wiki_tag on tag.nom_tag=wiki_tag.fk_nom_tag WHERE wiki_tag.fk_id_w = :id_w; ";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':id_w', $id_w);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt->closeCursor();
+            $tags = array();
+            foreach ($results as $B) {
+                $tags[] = new Tag($B["nom_tag"]);
+            }
+            return $tags;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return $tags;
+        }
+
+    }
     public function getTagByName($nom_tag)
     {
         $query = "SELECT * FROM tag WHERE nom_tag = :nom_tag";
@@ -73,7 +93,8 @@ class TagDAO
             }
         }
     }
-    public function delete_tag($nom_tag){
+    public function delete_tag($nom_tag)
+    {
         try {
             $query = "delete from tag where nom_tag=:nom_tag";
             $stmt = $this->db->prepare($query);

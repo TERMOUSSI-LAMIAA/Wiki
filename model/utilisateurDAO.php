@@ -81,7 +81,7 @@ class UtilisateurDAO
                 $stmt->bindParam(':email', $email);
                 $stmt->execute();
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
+                $stmt->closeCursor();
                 if ($user) {
                     // if (password_verify($password, $user['pswd'])) {
                     if ($password === $user['pswd']) {
@@ -103,6 +103,15 @@ class UtilisateurDAO
             }
         }
         return false;
+    }
+    public function logout_user()
+    {
+        session_start();
+
+        session_unset();
+
+        session_destroy();
+        exit();
     }
 
 }

@@ -16,10 +16,13 @@ class contoller_wiki
     }
     function getWikiAutController()
     { ///!!!!
+        session_start();
+        $email = $_SESSION['email'];
         $wikiDAO = new WikiDAO();
-        $wikis = $wikiDAO->get_wiki();
+        $wikis = $wikiDAO->get_wiki($email);
         include 'view/auteur/showWiki.php';
     }
+
     function archiveWikiController()
     {
         if (isset($_GET['id_w'])) {

@@ -58,7 +58,7 @@ if (isset($_GET['action'])) {
             $controllerTag->addTagControllerAction();
             break;
         case 'deleteTag':
-            $controllerTag->deleteTagControllerAction(); 
+            $controllerTag->deleteTagControllerAction();
             break;
         case 'updateTagShow':
             $controllerTag->updtTagController();
@@ -80,6 +80,9 @@ if (isset($_GET['action'])) {
             break;
         case 'addWiki':
             $controllerWiki->addWikiControllerAction();
+            break;
+        case 'logout':
+            $controllerUser->logoutController();
             break;
     }
 

@@ -53,6 +53,13 @@ class contoller_Utilisateur
 
         }
     }
+    function logoutController(){
+        if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+            $userDAO = new UtilisateurDAO();
+            $userDAO->logout_user();
+        }
+        header("location:index.php?action=loginForm");
+    }
     // public function updtBusController()
     // {
     //     if (isset($_GET['immat'])) {

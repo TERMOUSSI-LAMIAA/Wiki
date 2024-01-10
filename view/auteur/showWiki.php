@@ -206,7 +206,7 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div> -->
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="index.php?action=logout">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -254,13 +254,29 @@
                                                 </td>
                                                 <td>
                                                     <img src="data:image/jpeg;base64,<?= base64_encode($b->getImg()); ?>"
-                                                     alt="Image">   
+                                                        alt="Image" style="height:100px">
                                                 </td>
                                                 <td>
                                                     <?= $b->getFk_aut_email(); ?>
                                                 </td>
                                                 <td>
                                                     <?= $b->getFk_cat(); ?>
+                                                </td>
+                                                <td>
+                                                    <?php
+                                                    $tags = $b->getTags();
+                                                    // echo $b->getTitre() . "<br>mm: ";
+                                                    // print_r($tags);
+                                                    // echo "<br>";
+                                                    if ($tags !== null) {
+                                                        foreach ($tags as $tag) {
+                                                            echo $tag->getNom_tag();
+                                                            echo ' ';
+                                                        }
+                                                    } else {
+                                                        echo 'Aucun tag';
+                                                    }
+                                                    ?>
                                                 </td>
                                                 <td><a href="index.php?action=updateWikiShow&id_w=<?= $b->getId_w() ?>"
                                                         class="btn btn-primary">Update</a>
