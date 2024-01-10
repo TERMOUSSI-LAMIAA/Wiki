@@ -4,12 +4,14 @@ include "controller/dashboardController.php";
 include "controller/categorieController.php";
 include "controller/tagController.php";
 include "controller/wikiController.php";
+include "controller/homeController.php";
 
 $controllerUser = new contoller_Utilisateur();
 $controllerDashboard = new contoller_dashboard();
 $controllerCatg = new contoller_categorie();
 $controllerTag = new contoller_tag();
 $controllerWiki = new contoller_wiki();
+$controllerHome = new contoller_home();
 
 
 if (isset($_GET['action'])) {
@@ -84,9 +86,12 @@ if (isset($_GET['action'])) {
         case 'logout':
             $controllerUser->logoutController();
             break;
+        case 'home':
+            $controllerHome->getHomeController();
+            break;
     }
 
 } else {
-    $controllerUser->addUserController();
+    $controllerHome->getHomeController();
 }
 ?>

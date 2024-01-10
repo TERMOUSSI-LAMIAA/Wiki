@@ -10,9 +10,16 @@ class contoller_wiki
 {
     function getWikiController()
     {
+        $action = isset($_GET['action']) ? $_GET['action'] : 'home';
         $wikiDAO = new WikiDAO();
         $wikis = $wikiDAO->get_wiki();
-        include 'view/admin/archiveWiki.php';
+        if ($action === 'archivWiki') {
+            include 'view/admin/archiveWiki.php';
+        } elseif ($action === 'home') {
+            include 'view/home.php';
+        } else {
+            echo 'no action found';
+        }
     }
     function getWikiAutController()
     { ///!!!!

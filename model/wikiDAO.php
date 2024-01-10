@@ -10,15 +10,16 @@ class WikiDAO
         $this->db = Database::getInstance()->getConnection();
     }
 
-    public function get_wiki($email = "")
+    public function get_wiki($email = "",$action="")
     {
-        var_dump($email);
         $tagDAO = new TagDAO();
         $query = "SELECT * FROM wiki where isArchive=0";
         if (!empty($email)) {
             $query .= " AND fk_aut_email = :email";
         }
-        echo $query . "<br>";
+    // if (!empty($email)) {
+
+    // }
         $stmt = $this->db->prepare($query);
         if (!empty($email)) {
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);

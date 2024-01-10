@@ -265,9 +265,6 @@
                                                 <td>
                                                     <?php
                                                     $tags = $b->getTags();
-                                                    // echo $b->getTitre() . "<br>mm: ";
-                                                    // print_r($tags);
-                                                    // echo "<br>";
                                                     if ($tags !== null) {
                                                         foreach ($tags as $tag) {
                                                             echo $tag->getNom_tag();
