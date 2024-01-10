@@ -9,10 +9,18 @@ class UtilisateurDAO
         $this->db = Database::getInstance()->getConnection();
     }
 
-    public function get_utilisateur()
+    public function get_utilisateur($role = "")
     {
         $query = "SELECT * FROM utilisateur";
-        $stmt = $this->db->query($query);
+        if ($role !== null) {
+            $query .= " WHERE role = :role";
+        }
+
+        $stmt = $this->db->prepare($query);
+
+        if ($role !== null) {
+            $stmt->bindParam(':role', $role, PDO::PARAM_STR);
+        }
         $stmt->execute();
         $userData = $stmt->fetchAll();
         $users = array();
@@ -20,6 +28,24 @@ class UtilisateurDAO
             $users[] = new Utilisateur($B["email"], $B["nom"], $B["pswd"], $B["role"]);
         }
         return $users;
+    }
+    public function get_userByEmail($email)
+    {
+        try {
+            $query = "SELECT nom FROM utilisateur WHERE email = :email";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($result) {
+                return $result['nom'];
+            } else {
+                return null;
+            }
+        } catch (PDOException $e) {
+            error_log("Error: " . $e->getMessage());
+            return null;
+        }
     }
     public function insert_user()
     {

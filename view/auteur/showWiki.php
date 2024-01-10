@@ -69,8 +69,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion wikis:</h6>
-                        <a class="collapse-item" href="buttons.html">Modifier / Supprimer</a>
-                        <a class="collapse-item" href="cards.html">Ajouter</a>
+                        <a class="collapse-item" href="">Modifier / Supprimer</a>
+                        <a class="collapse-item" href="index.php?action=addWikiForm">Ajouter</a>
                     </div>
                 </div>
             </li>
@@ -236,7 +236,8 @@
                                             <th>Image</th>
                                             <th>Auteur</th>
                                             <th>Catégorie</th>
-                                            <th>Mod/Supp</th>
+                                            <th>Tags</th>
+                                            <th>Modf/Supp</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -253,7 +254,7 @@
                                                 </td>
                                                 <td>
                                                     <img src="data:image/jpeg;base64,<?= base64_encode($b->getImg()); ?>"
-                                                        alt="Image">
+                                                     alt="Image">   
                                                 </td>
                                                 <td>
                                                     <?= $b->getFk_aut_email(); ?>
@@ -263,6 +264,7 @@
                                                 </td>
                                                 <td><a href="index.php?action=updateWikiShow&id_w=<?= $b->getId_w() ?>"
                                                         class="btn btn-primary">Update</a>
+                                                    <hr>
                                                     <a href="javascript:void(0);"
                                                         onclick="confirmDelete('<?= $b->getId_w() ?>')"
                                                         class="btn btn-danger">Delete</a>

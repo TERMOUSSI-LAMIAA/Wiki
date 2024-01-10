@@ -1,5 +1,9 @@
 <?php
-include 'model/wikiDAO.php';
+require_once 'model/wikiDAO.php';
+require_once 'model/categorieDAO.php';
+require_once 'model/utilisateurDAO.php';
+require_once 'controller/userController.php';
+require_once 'model/tagDAO.php';
 
 
 class contoller_wiki
@@ -10,7 +14,8 @@ class contoller_wiki
         $wikis = $wikiDAO->get_wiki();
         include 'view/admin/archiveWiki.php';
     }
-    function getWikiAutController(){///!!!!
+    function getWikiAutController()
+    { ///!!!!
         $wikiDAO = new WikiDAO();
         $wikis = $wikiDAO->get_wiki();
         include 'view/auteur/showWiki.php';
@@ -29,24 +34,32 @@ class contoller_wiki
             }
         }
     }
-    // function addTagController()
-    // {
-    //     include 'view\admin\addTag.php';
-    // }
+    function addWikiController()
+    {
+        $catgDAO = new CategorieDAO();
+        $catgs = $catgDAO->get_categorie();
+        $auteursDAO = new UtilisateurDAO();
+        $auteurs = $auteursDAO->get_utilisateur('auteur');
+        $tagsDAO = new TagDAO();
+        $tags = $tagsDAO->get_tag();
+        include 'view\auteur\addWiki.php';
+    }
 
-    // function addTagControllerAction()
-    // {
-    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //         $tagDAO = new TagDAO();
-    //         $inserted = $tagDAO->insert_tag();
-    //         if ($inserted) {
-    //             header('Location: index.php?action=showTag');
-    //             exit();
-    //         } else {
-    //             echo 'Adding error';
-    //         }
-    //     }
-    // }
+    function addWikiControllerAction()
+    {
+        session_start();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = $_SESSION['email'];
+            $wikiDAO = new WikiDAO();
+            $inserted = $wikiDAO->insert_wiki($email);
+            if ($inserted) {
+                header('Location: index.php?action=showWikiAut');
+                exit();
+            } else {
+                echo 'Adding error';
+            }
+        }
+    }
     // public function updtTagController()
     // {
     //     if (isset($_GET['nom_tag'])) {

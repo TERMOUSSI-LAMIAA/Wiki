@@ -29,10 +29,17 @@ class contoller_Utilisateur
     }
     function loginUserController()
     {
+        session_start();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userDAO = new UtilisateurDAO();
             $logged = $userDAO->login_user();
             // var_dump($logged);
+            if ($logged) {       
+                $_SESSION['email'] = $_POST['email'];
+                $email = $_SESSION['email'];
+                $name = $userDAO->get_userByEmail($email);
+                $_SESSION['nom'] = $name;
+            }
             if ($logged === "admin") {
                 header('Location: index.php?action=dashboard');
                 exit();
@@ -42,6 +49,8 @@ class contoller_Utilisateur
             } else {
                 echo 'login error';
             }
+
+
         }
     }
     // public function updtBusController()

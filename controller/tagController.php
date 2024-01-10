@@ -1,5 +1,5 @@
 <?php
-include 'model/tagDAO.php';
+require_once 'model/tagDAO.php';
 
 
 class contoller_tag

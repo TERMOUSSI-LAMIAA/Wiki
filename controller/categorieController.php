@@ -1,5 +1,5 @@
 <?php
-include 'model/categorieDAO.php';
+require_once 'model/categorieDAO.php';
 
 
 class contoller_categorie

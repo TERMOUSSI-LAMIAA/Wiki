@@ -75,13 +75,12 @@ if (isset($_GET['action'])) {
         case 'showWikiAut':
             $controllerWiki->getWikiAutController();
             break;
-        // case 'priceFilter':
-        //     $controllerDetail->filterController();
-        //     break;
-        // // case 'entrepFilter':
-        // case 'horaireFilter':
-        //     $controllerDetail->filterController();
-        //     break;
+        case 'addWikiForm':
+            $controllerWiki->addWikiController();
+            break;
+        case 'addWiki':
+            $controllerWiki->addWikiControllerAction();
+            break;
     }
 
 } else {
