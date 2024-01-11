@@ -42,7 +42,8 @@ class WikiDAO
 
         return $wikis;
     }
-    public function get_wikiByID($id_w) {
+    public function get_wikiByID($id_w)
+    {
         $tagDAO = new TagDAO();
         $query = "SELECT * FROM wiki WHERE id_w = :id AND isArchive = 0";
         $stmt = $this->db->prepare($query);
@@ -66,6 +67,69 @@ class WikiDAO
             return $wiki;
         }
         return null; //  wiki with given ID is not found
+    }
+    public function searchByTitleTagCatg($searchVal)
+    {
+        try {
+            $query = "SELECT
+                        tbl.*,
+                        wwt.fk_nom_tag
+                    FROM
+                        (
+                        SELECT
+                            w.*,
+                            c.nom_cat
+                        FROM
+                            wiki w
+                        LEFT JOIN categorie c ON
+                            w.fk_cat = c.nom_cat
+                        LEFT JOIN wiki_tag wt ON
+                            w.id_w = wt.fk_id_w AND wt.fk_nom_tag LIKE :searchVal
+                        WHERE
+                            w.isArchive = 0 AND(
+                                w.titre LIKE :searchVal OR wt.fk_nom_tag LIKE :searchVal OR c.nom_cat LIKE :searchVal
+                            )
+                    ) AS tbl
+                    LEFT JOIN wiki_tag wwt ON
+                        tbl.id_w = wwt.fk_id_w  ORDER BY `tbl`.`id_w` ASC;";
+            $stmt = $this->db->prepare($query);
+            $searchVal = '%' . $searchVal . '%';
+            $stmt->bindParam(':searchVal', $searchVal, PDO::PARAM_STR);
+            $stmt->execute();
+            $wikiData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $wikis = array_values(
+                array_reduce($wikiData, function ($carry, $wiki) {
+
+                $id = $wiki['id_w'];
+                $tag = $wiki['fk_nom_tag'];
+
+                if (!isset($carry[$id])) {
+                    $carry[$id] = [
+                        'id' => $wiki['id_w'],
+                        'titre' => $wiki['titre'],
+                        'contenu' => $wiki['contenu'],
+                        'wiki_date' => $wiki['wiki_date'],
+                        'fk_aut_email' => $wiki['fk_aut_email'],
+                        'fk_cat' => $wiki['fk_cat'],
+                        'base64Image' => base64_encode($wiki['img']),
+                        'tags' => $tag ? [$tag] : [],
+                    ];
+                } else {
+                    if ($tag)
+                        $carry[$id]['tags'][] = $tag;
+                }
+
+                return $carry;
+            }, []));
+            // echo '<pre>';
+            // print_r($wikis);
+            // echo '</pre>';
+            return $wikis;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
     }
     public function archive_wiki($id_w)
     {
@@ -136,7 +200,8 @@ class WikiDAO
         $stmt->bindParam(':fk_id_w', $wikiId);
         $stmt->execute();
     }
-    public function getTagsForWiki($id_w)
+
+    public function getTagsForWiki($id_w) //not working with it ?!
     {
         $query = "SELECT t.nom_tag
                 FROM tag t

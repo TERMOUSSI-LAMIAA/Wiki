@@ -46,10 +46,10 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small" id="searchInput"
+                                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <button class="btn btn-primary" id="searchButton" type="button">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -127,7 +127,7 @@
                         <div class="col-lg-4">
 
                             <!-- Custom Text Color Utilities -->
-                            <div class="card shadow mb-4">
+                            <div class="card shadow mb-4" id="wiki-search-results">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Tous les wikis</h6>
                                 </div>
@@ -163,10 +163,10 @@
                                                 <?= $b->getFk_aut_email(); ?>
                                             </strong>
                                         </p>
-                                        <p>
+                                        <p>Tags:
                                             <?php
                                             $tags = $b->getTags();
-                                            if ($tags !== null) {
+                                            if ($tags && count($tags)) {
                                                 foreach ($tags as $tag) {
                                                     echo $tag->getNom_tag();
                                                     echo ' ';
@@ -225,7 +225,7 @@
                                                 <?= $b->getFk_aut_email(); ?>
                                             </strong>
                                         </p>
-                                        <p>
+                                        <p>Tags:
                                             <?php
                                             $tags = $b->getTags();
                                             if ($tags !== null) {
@@ -330,6 +330,83 @@
     <!-- Custom scripts for all pages-->
     <script src="view\assets\js\sb-admin-2.min.js"></script>
 
+    <script>
+
+        $(document).ready(function () {
+            $("#searchButton").click(function () {
+                var inputValue = $("#searchInput").val();
+                $.ajax({
+                    url: 'index.php',
+                    method: 'GET',
+                    data: {
+                        action: 'search',
+                        searchVal: inputValue
+                    },
+                    dataType: "JSON",
+                    success: function (response) {
+                        let html = `<div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Résultat de recherche</h6>
+                                </div>`;
+                        if (response.data.length > 0) {
+                            response.data.forEach(element => {
+                                // console.log(element);
+                                console.log('Tags:', element.tags);
+                                html += `
+                                    <div class="card-body">
+                                        <p> Categorie:
+                                            <strong>
+                                            ${element.fk_cat}
+                                            </strong>
+                                        </p>
+                                        <h6> Titre:
+                                            <a href="index.php?action=detailWiki&id_w= ${element.id_w}"
+                                                class="card-title-link">
+                                                <strong>
+                                                    <q>
+                                                    ${element.titre}
+                                                    </q>
+                                                </strong></a>
+                                        </h6>
+                                        <img src="data:image/jpeg;base64, ${element.base64Image}" alt="image"
+                                            class="img-fluid mb-3" style="max-height: 100px;">
+
+                                        <p>
+                                        ${element.contenu}
+                                        </p>
+                                        <p>
+                                            <i>
+                                            ${element.wiki_date}
+                                            </i>
+                                        </p>
+                                        <p> Auteur email:
+                                            <strong>
+                                            ${element.fk_aut_email}
+                                            </strong>
+                                        </p>
+                                        <p>Tags:
+                                       ${element.tags.length > 0 ? element.tags.join(', ') : 'Aucun tag'}
+                                        </p>
+                                    </div>
+                                    <hr>
+                            </div>
+                              `;
+                            });
+
+                        } else {
+                            html = '<div class="alert alert-warning">No data found.</div>';
+                        }
+                        $("#wiki-search-results").html(html);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error('AJAX Error:', textStatus, errorThrown);
+                        console.log('Response Text:', jqXHR.responseText);
+                    }
+                });
+            });
+        });
+
+
+    </script>
 </body>
 
 </html>

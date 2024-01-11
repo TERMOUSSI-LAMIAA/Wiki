@@ -92,6 +92,9 @@ if (isset($_GET['action'])) {
         case 'detailWiki':
             $controllerHome->getHomeController();
             break;
+        case 'search':
+            $controllerHome->searchController();
+            break;
     }
 
 } else {

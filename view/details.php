@@ -47,10 +47,10 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small" id="searchInput"
+                                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <button class="btn btn-primary" id="searchButton" type="button">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -123,7 +123,7 @@
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">
-                                        <i class="fas fa-book"></i> <strong>
+                                        <i class="fas fa-newspaper"></i> <strong>
                                             <?= $wiki->getTitre(); ?>
                                         </strong>
                                     </h6>
@@ -141,15 +141,16 @@
                                     </p>
                                     <p>
                                         <i>
+                                            <i class="fas fa-calendar-alt"></i>
                                             <?= $wiki->getWiki_date(); ?>
                                         </i>
                                     </p>
-                                    <p> Auteur email:
+                                    <p> <i class="fas fa-pen"></i> Auteur email:
                                         <strong>
                                             <?= $wiki->getFk_aut_email(); ?>
                                         </strong>
                                     </p>
-                                    <p>
+                                    <p>Tags:
                                         <?php
                                         $tags = $wiki->getTags();
                                         if ($tags !== null) {
@@ -225,7 +226,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src="view\assets\js\sb-admin-2.min.js"></script>
-
+    <!-- - -->
+   
 </body>
 
 </html>
