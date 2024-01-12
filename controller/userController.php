@@ -58,8 +58,12 @@ class contoller_Utilisateur
         if (isset($_GET['action']) && $_GET['action'] == 'logout') {
             $userDAO = new UtilisateurDAO();
             $userDAO->logout_user();
+            // header("location:index.php?action=loginForm");
         }
-        header("location:index.php?action=loginForm");
+        else{
+            echo 'logout error';
+        }
+       
     }
    
 

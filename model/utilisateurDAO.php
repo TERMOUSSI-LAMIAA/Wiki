@@ -121,10 +121,12 @@ class UtilisateurDAO
     {
         session_start();
 
-        session_unset();
+        $_SESSION = array();
 
         session_destroy();
-        exit();
+
+        header("location: index.php?action=loginForm");
+        exit(); 
     }
 
 }

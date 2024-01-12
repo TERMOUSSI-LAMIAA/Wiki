@@ -14,7 +14,7 @@ class contoller_wiki
         $wikiDAO = new WikiDAO();
         $wikis = $wikiDAO->get_wiki();
         $recwikis = $wikiDAO->get_wiki(null, $action);
-        if ($action === 'archivWiki') {
+        if ($action === 'showWiki') {
             include 'view/admin/archiveWiki.php';
         } elseif ($action === 'home') {
             $catgDAO = new CategorieDAO();
@@ -117,11 +117,12 @@ class contoller_wiki
                     error_log('Error in updtWikiControllerAction:' . $e->getMessage(), 0);
                 }
             }
-        }else{
+        } else {
             echo 'id not found';
         }
     }
-    public function deleteWikiController(){
+    public function deleteWikiController()
+    {
         $id_w = $_GET['id_w'];
         $wikiDAO = new WikiDAO();
         $wikiDAO->delete_wiki($id_w);
