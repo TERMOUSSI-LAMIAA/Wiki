@@ -46,7 +46,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.php?action=dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -56,21 +56,21 @@
 
             <!-- Heading -->
             <!-- <div class="sidebar-heading">
-                Interface
-            </div> -->
+Interface
+</div> -->
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Categorie</span>
+                    <span>Categories</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion Categories:</h6>
-                        <a class="collapse-item" href="buttons.html">Modifier / Supprimer</a>
-                        <a class="collapse-item" href="cards.html">Ajouter</a>
+                        <a class="collapse-item" href="index.php?action=showCat">Modifier / Supprimer</a>
+                        <a class="collapse-item" href="index.php?action=addCatForm">Ajouter</a>
                     </div>
                 </div>
             </li>
@@ -79,15 +79,15 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
+                    <i class="fas fa-fw fa-cog"></i>
                     <span>Tags</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion Tags:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Modifier / Supprimer</a>
-                        <a class="collapse-item" href="utilities-border.html">Ajouter</a>
+                        <a class="collapse-item" href="index.php?action=showTag">Modifier / Supprimer</a>
+                        <a class="collapse-item" href="index.php?action=addTagForm">Ajouter</a>
                     </div>
                 </div>
             </li>
@@ -97,19 +97,19 @@
 
             <!-- Heading -->
             <!-- <div class="sidebar-heading">
-                Addons
-            </div> -->
+Addons
+</div> -->
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
+                    <i class="fas fa-fw fa-archive"></i>
                     <span>Wiki</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="login.html">Archiver</a>
+                        <a class="collapse-item" href="index.php?action=showWiki">Afficher</a>
                     </div>
                 </div>
             </li>
@@ -124,7 +124,6 @@
             </div>
         </ul>
         <!-- End of Sidebar -->
-
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -234,11 +233,13 @@
                                 enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="categoryName">Nom Categorie:</label>
-                                    <input type="text" class="form-control" id="categoryName" name="old_nom_tag" value="<?= $tag->getNom_tag() ?>" required readonly>
+                                    <input type="text" class="form-control" id="categoryName" name="old_nom_tag"
+                                        value="<?= $tag->getNom_tag() ?>" required readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="categoryName">Nom Categorie:</label>
-                                    <input type="text" class="form-control" id="categoryName" name="new_nom_tag" value="<?= $tag->getNom_tag() ?>" required >
+                                    <input type="text" class="form-control" id="categoryName" name="new_nom_tag"
+                                        value="<?= $tag->getNom_tag() ?>" required>
                                 </div>
                                 <button type="submit" class="btn btn-success">Enregistrer</button>
                             </form>
@@ -284,14 +285,14 @@
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                        <a class="btn btn-primary" href="index.php?action=logout">Logout</a>
                     </div>
                 </div>
             </div>
         </div>
 
-         <!-- Bootstrap core JavaScript-->
-         <script src="view\assets\vendor\jquery\jquery.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="view\assets\vendor\jquery\jquery.min.js"></script>
         <script src="view\assets\vendor\bootstrap\js\bootstrap.bundle.min.js"></script>
 
         <!-- Core plugin JavaScript-->

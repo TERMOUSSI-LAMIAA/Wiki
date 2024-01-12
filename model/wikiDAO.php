@@ -10,7 +10,7 @@ class WikiDAO
         $this->db = Database::getInstance()->getConnection();
     }
 
-    public function get_wiki($email = "", $action = "")//role
+    public function get_wiki($email = "", $action = "") //role
     {
         $tagDAO = new TagDAO();
         $query = "SELECT * FROM wiki where isArchive=0";
@@ -240,7 +240,8 @@ class WikiDAO
             }
         }
     }
-    public function statsWikis(){
+    public function statsWikis()
+    {
         try {
             $query = "select count(id_w) as total_wiki from wiki";
             $stmt = $this->db->query($query);
@@ -251,7 +252,8 @@ class WikiDAO
             return false;
         }
     }
-    public function delete_wiki($id_w){
+    public function delete_wiki($id_w)
+    {
         try {
             $query = "delete from wiki where id_w=:id_w";
             $stmt = $this->db->prepare($query);

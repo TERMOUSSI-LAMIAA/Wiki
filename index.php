@@ -18,7 +18,8 @@ if (isset($_GET['action'])) {
     $action = $_GET['action'];
 
     switch ($action) {
-        case 'admin':
+        case 'register':
+            $controllerUser->addUserController();
             break;
         case 'addUser':
             $controllerUser->addUserControllerAction();

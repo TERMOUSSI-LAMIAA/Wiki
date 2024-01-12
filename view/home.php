@@ -85,15 +85,15 @@
 
                         <!-- Nav Item - Register -->
                         <li class="nav-item">
-                            <a class="nav-link" href="register.php">
+                            <a class="nav-link" href="index.php?action=register">
                                 <i class="fas fa-user-plus fa-fw"></i>&nbsp;
-                                Register
+                                S'inscrire
                             </a>
                         </li>
 
                         <!-- Nav Item - Login -->
                         <li class="nav-item">
-                            <a class="nav-link" href="login.php">
+                            <a class="nav-link" href="index.php?action=loginForm">
                                 <i class="fas fa-key fa-fw"></i>&nbsp;
                                 Login
                             </a>
@@ -104,9 +104,9 @@
 
                         <!-- Nav Item - Home -->
                         <li class="nav-item">
-                            <a class="nav-link" href="home.php">
-                                <i class="fas fa-home fa-fw"></i>
-                                Home
+                            <a class="nav-link" href="index.php?action=home">
+                                <i class="fas fa-home fa-fw"></i>&nbsp;
+                                Accueil
                             </a>
                         </li>
                     </ul>

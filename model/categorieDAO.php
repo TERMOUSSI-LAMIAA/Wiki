@@ -100,10 +100,13 @@ class CategorieDAO
             $stmt = $this->db->prepare($query);
             $stmt->bindParam(':nom_cat', $nom_cat);
             $stmt->execute();
-            return true;
+            if ($stmt->rowCount() > 0) {
+                return true;
+            } else {
+                return false;
+            }
         } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-            return false;
+            return "Error: " . $e->getMessage();
         }
     }
 }

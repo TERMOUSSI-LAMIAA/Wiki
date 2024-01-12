@@ -54,7 +54,11 @@ class contoller_categorie
     {
         $nom_cat = $_GET['nom_cat'];
         $catgDAO = new CategorieDAO();
-        $catgDAO->delete_categorie($nom_cat);
+        $result = $catgDAO->delete_categorie($nom_cat);
+
+        // if ($result !== true) {
+        //     echo '<script>alert("' . $result . '");</script>';
+        // }
         header('Location: index.php?action=showCat');
         exit;
     }

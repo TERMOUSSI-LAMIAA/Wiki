@@ -46,18 +46,18 @@
 
             <!-- Nav Item - Dashboard -->
             <!-- <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li> -->
+    <a class="nav-link" href="index.html">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span></a>
+</li> -->
 
             <!-- Divider -->
             <!-- <hr class="sidebar-divider"> -->
 
             <!-- Heading -->
             <!-- <div class="sidebar-heading">
-                Interface
-            </div> -->
+    Interface
+</div> -->
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -69,50 +69,50 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestion wikis:</h6>
-                        <a class="collapse-item" href="">Modifier / Supprimer</a>
-                        <a class="collapse-item" href="index.php?action=addWiki">Ajouter</a>
+                        <a class="collapse-item" href="index.php?action=showWikiAut">Modifier / Supprimer</a>
+                        <a class="collapse-item" href="index.php?action=addWikiForm">Ajouter</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <!-- <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Tags</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Gestion Tags:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Modifier / Supprimer</a>
-                        <a class="collapse-item" href="utilities-border.html">Ajouter</a>
-                    </div>
-                </div>
-            </li> -->
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+        aria-expanded="true" aria-controls="collapseUtilities">
+        <i class="fas fa-fw fa-wrench"></i>
+        <span>Tags</span>
+    </a>
+    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+        data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Gestion Tags:</h6>
+            <a class="collapse-item" href="utilities-color.html">Modifier / Supprimer</a>
+            <a class="collapse-item" href="utilities-border.html">Ajouter</a>
+        </div>
+    </div>
+</li> -->
 
             <!-- Divider -->
             <!-- <hr class="sidebar-divider"> -->
 
             <!-- Heading -->
             <!-- <div class="sidebar-heading">
-                Addons
-            </div> -->
+    Addons
+</div> -->
 
             <!-- Nav Item - Pages Collapse Menu -->
             <!-- <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Wiki</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="login.html">Archiver</a>
-                    </div>
-                </div>
-            </li> -->
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+        aria-expanded="true" aria-controls="collapsePages">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Wiki</span>
+    </a>
+    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="login.html">Archiver</a>
+        </div>
+    </div>
+</li> -->
 
 
             <!-- Divider -->
@@ -210,6 +210,8 @@
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
+
+                            
                             </div>
                         </li>
 
@@ -306,7 +308,7 @@
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                        <a class="btn btn-primary" href="index.php?action=logout">Logout</a>
                     </div>
                 </div>
             </div>
