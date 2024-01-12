@@ -19,6 +19,21 @@
 
     <!-- Custom styles for this template-->
     <link href="view\assets\css\sb-admin-2.min.css" rel="stylesheet">
+    <style>
+        .image-title {
+            font-size: 24px;
+            /* Adjust the font size as needed */
+            color: #6206ac;
+            /* Adjust the text color */
+            text-align: center;
+            /* Center-align the text */
+            margin-bottom: 20px;
+            /* Add some bottom margin for spacing */
+            font-weight: bold;
+            /* Add bold font weight if desired */
+            line-height: 1.5;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -66,7 +81,7 @@
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                            <!-- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                                 aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
@@ -80,7 +95,7 @@
                                         </div>
                                     </div>
                                 </form>
-                            </div>
+                            </div> -->
                         </li>
 
                         <!-- Nav Item - Register -->
@@ -117,8 +132,12 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <div class="text-center mb-4">
+                        <h2 class="image-title">WIKI</h2>
+
                         <img src="asset\images\redaction-creative-texte-commercial-seo-edition.jpg" alt="image"
-                            height="500px" class="img-fluid">
+                            height="350px">
+                        <h3 class="image-title">"Découvrir, Apprendre, Partager : Votre Portail vers un Monde de Connaissances – WikiWeb"
+                        </h3>
                     </div>
                     <!-- Content Row -->
                     <div class="row">

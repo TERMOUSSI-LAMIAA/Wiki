@@ -18,21 +18,21 @@ class contoller_wiki
             $catgDAO = new CategorieDAO();
             $reccatgs = $catgDAO->get_categorie($action);
             include 'view/home.php';
+        } elseif ($action === 'detailWiki') {
+            if (isset($_GET['id_w'])) {
+                $id_w = $_GET['id_w'];
+                $wiki = $wikiDAO->get_wikiByID($id_w);
+                if ($wiki !== null) {
+                    include 'view/details.php';
+                } else {
+                    echo 'Wiki not found';
+                }
+            }
         } else {
             session_start();
             if (isset($_SESSION['email']) && $_SESSION['role'] === "admin") {
                 if ($action === 'showWiki') {
                     include 'view/admin/archiveWiki.php';
-                } elseif ($action === 'detailWiki') {
-                    if (isset($_GET['id_w'])) {
-                        $id_w = $_GET['id_w'];
-                        $wiki = $wikiDAO->get_wikiByID($id_w);
-                        if ($wiki !== null) {
-                            include 'view/details.php';
-                        } else {
-                            echo 'Wiki not found';
-                        }
-                    }
                 } else {
                     echo 'no action found';
                 }
@@ -41,7 +41,6 @@ class contoller_wiki
             }
 
         }
-
     }
     function getWikiAutController()
     {
