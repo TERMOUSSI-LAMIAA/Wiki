@@ -210,10 +210,11 @@ class WikiDAO
             try {
                 $this->db->beginTransaction();
 
-                // $deleteTagsQuery = "DELETE FROM wiki_tag WHERE fk_id_w = :id_w";
-                // $deleteTagsStmt = $this->db->prepare($deleteTagsQuery);
-                // $deleteTagsStmt->bindParam(':id_w', $id_w, PDO::PARAM_INT);
-                // $deleteTagsStmt->execute();
+                $deleteTagsQuery = "DELETE FROM wiki_tag WHERE fk_id_w = :id_w";
+                $deleteTagsStmt = $this->db->prepare($deleteTagsQuery);
+                $deleteTagsStmt->bindParam(':id_w', $id_w, PDO::PARAM_INT);
+                $deleteTagsStmt->execute();
+               
 
                 $query = "update wiki set titre=:titre ,contenu=:contenu,wiki_date=:wiki_date,img=:img,fk_aut_email=:fk_aut_email,fk_cat=:fk_cat where id_w=:id_w";
                 $stmt = $this->db->prepare($query);
@@ -226,9 +227,9 @@ class WikiDAO
                 $stmt->bindParam(':id_w', $id_w, PDO::PARAM_INT);
                 $stmt->execute();
 
-                $wikiId = $this->db->lastInsertId();
+               // $wikiId = $this->db->lastInsertId();
                 foreach ($tags as $tag) {
-                    $this->associate_tag_with_wiki($tag, $wikiId);
+                    $this->associate_tag_with_wiki($tag, $id_w);
                 }
                 // Commit the transaction
                 $this->db->commit();

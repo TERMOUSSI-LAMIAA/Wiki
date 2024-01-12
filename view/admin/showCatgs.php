@@ -332,6 +332,13 @@
                 window.location.href = "index.php?action=deleteCat&nom_cat=" + nomCat;
             }
         }
+
+        <?php
+        if (isset($_GET['error'])) {
+            echo "alert('" . $_GET['error'] . "');";
+            echo "window.location.href='index.php?action=showCat';";
+        }
+        ?>
     </script>
 </body>
 

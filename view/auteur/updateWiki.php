@@ -265,7 +265,8 @@
                                 <div class="form-check">
                                     <?php
                                     $tagValue = $tag->getNom_tag();
-                                    $isChecked = in_array($tagValue, $selectedTags);
+
+                                    $isChecked = in_array($tagValue, array_map(fn($tag) => $tag->getNom_tag(), $selectedTags));
                                     ?>
                                     <input type="checkbox" class="form-check-input" id="<?= $tagValue; ?>" name="tags[]"
                                         value="<?= $tagValue; ?>" <?= $isChecked ? 'checked' : ''; ?>>
