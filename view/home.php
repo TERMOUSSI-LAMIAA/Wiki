@@ -147,7 +147,7 @@
                                                     </q>
                                                 </strong></a>
                                         </h6>
-                                        <img src="data:image/jpeg;base64,<?= base64_encode($b->getImg()); ?>" alt="image"
+                                        <img src="data:image/jpeg;base64,<?= base64_encode($b->getImg()); ?>" alt="no image"
                                             class="img-fluid mb-3" style="max-height: 100px;">
 
                                         <p>
@@ -359,7 +359,7 @@
                                             </strong>
                                         </p>
                                         <h6> Titre:
-                                            <a href="index.php?action=detailWiki&id_w= ${element.id_w}"
+                                            <a href="index.php?action=detailWiki&id_w= ${element.id}"
                                                 class="card-title-link">
                                                 <strong>
                                                     <q>

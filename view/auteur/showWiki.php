@@ -358,7 +358,7 @@
     <!-- delete confirmation form -->
     <script>
         function confirmDelete(id_w) {
-            var confirmDelete = confirm("Are you sure you want to delete the wiki " + id_w + "?");
+            var confirmDelete = confirm("Are you sure you want to delete the wiki ?");
 
             if (confirmDelete) {
                 window.location.href = "index.php?action=deleteWiki&id_w=" + id_w;

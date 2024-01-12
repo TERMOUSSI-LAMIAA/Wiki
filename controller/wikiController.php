@@ -29,7 +29,7 @@ class contoller_wiki
                 } else {
                     echo 'Wiki not found';
                 }
-            } 
+            }
         } else {
             echo 'no action found';
         }
@@ -83,33 +83,49 @@ class contoller_wiki
             }
         }
     }
-    // public function updtTagController()
-    // {
-    //     if (isset($_GET['nom_tag'])) {
-    //         $nom_tag = $_GET['nom_tag'];
-    //         $tagDAO = new TagDAO();
-    //         $tag = $tagDAO->getTagByName($nom_tag);
-    //         include("view/admin/updtTag.php");
-    //     }
-    // }
-    // public function updtTagControllerAction()
-    // {
-    //     try {
-    //         $tagDAO = new TagDAO();
-    //         $tagDAO->update_tag();
-    //         header('Location: index.php?action=showTag');
-    //         exit;
-    //     } catch (Exception $e) {
-    //         error_log('Error in updtCatgControllerAction:' . $e->getMessage(), 0);
-    //     }
-
-    // }
-    // public function deleteTagControllerAction()
-    // {
-    //     $nom_tag = $_GET['nom_tag'];
-    //     $tagDAO = new TagDAO();
-    //     $tagDAO->delete_tag($nom_tag);
-    //     header('Location: index.php?action=showTag');
-    //     exit;
-    // }
+    public function updtWikiController()
+    {
+        if (isset($_GET['id_w'])) {
+            $id_w = $_GET['id_w'];
+            $wikiDAO = new WikiDAO();
+            $wiki = $wikiDAO->getWikiById($id_w);
+            $catgDAO = new CategorieDAO();
+            $catgs = $catgDAO->get_categorie();
+            $tagDAO = new TagDAO();
+            $tags = $tagDAO->get_tag();
+            $selectedTags = $tagDAO->getTagsByWiki($id_w);
+            include("view/auteur/updateWiki.php");
+        }
+    }
+    public function updtWikiControllerAction()
+    {
+        session_start();
+        if (isset($_GET['id_w'])) {
+            $id_w = $_GET['id_w'];
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $email = $_SESSION['email'];
+                try {
+                    $wikiDAO = new WikiDAO();
+                    $updated = $wikiDAO->updt_wiki($id_w, $email);
+                    if ($updated) {
+                        header('Location: index.php?action=showWikiAut');
+                        exit();
+                    } else {
+                        echo 'updating error';
+                    }
+                } catch (Exception $e) {
+                    error_log('Error in updtWikiControllerAction:' . $e->getMessage(), 0);
+                }
+            }
+        }else{
+            echo 'id not found';
+        }
+    }
+    public function deleteWikiController(){
+        $id_w = $_GET['id_w'];
+        $wikiDAO = new WikiDAO();
+        $wikiDAO->delete_wiki($id_w);
+        header('Location: index.php?action=showWikiAut');
+        exit;
+    }
 }

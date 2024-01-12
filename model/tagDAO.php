@@ -45,7 +45,7 @@ class TagDAO
         try {
             $query = "select tag.nom_tag,wiki_tag.fk_id_w from tag join wiki_tag on tag.nom_tag=wiki_tag.fk_nom_tag WHERE wiki_tag.fk_id_w = :id_w; ";
             $stmt = $this->db->prepare($query);
-            $stmt->bindParam(':id_w', $id_w);
+            $stmt->bindParam(':id_w', $id_w, PDO::PARAM_INT);
             $stmt->execute();
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $stmt->closeCursor();

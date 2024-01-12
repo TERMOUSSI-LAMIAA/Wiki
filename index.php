@@ -95,6 +95,15 @@ if (isset($_GET['action'])) {
         case 'search':
             $controllerHome->searchController();
             break;
+        case 'updateWikiShow':
+            $controllerWiki->updtWikiController();
+            break;
+        case 'updtWiki':
+            $controllerWiki->updtWikiControllerAction();
+            break;
+        case 'deleteWiki':
+            $controllerWiki->deleteWikiController();
+            break;
     }
 
 } else {
