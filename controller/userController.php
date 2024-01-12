@@ -39,6 +39,7 @@ class contoller_Utilisateur
                 $email = $_SESSION['email'];
                 $name = $userDAO->get_userByEmail($email);
                 $_SESSION['nom'] = $name;
+                $_SESSION['role']=$logged;
             }
             if ($logged === "admin") {
                 header('Location: index.php?action=dashboard');

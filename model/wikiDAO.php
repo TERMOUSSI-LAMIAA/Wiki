@@ -240,6 +240,17 @@ class WikiDAO
             }
         }
     }
+    public function statsWikis(){
+        try {
+            $query = "select count(id_w) as total_wiki from wiki";
+            $stmt = $this->db->query($query);
+            $wikiData = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $wikiData;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
     public function delete_wiki($id_w){
         try {
             $query = "delete from wiki where id_w=:id_w";

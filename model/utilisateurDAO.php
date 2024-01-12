@@ -38,7 +38,8 @@ class UtilisateurDAO
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($result) {
-                return $result['nom'];
+                // return $result['nom'];
+                return $result;
             } else {
                 return null;
             }
@@ -81,7 +82,6 @@ class UtilisateurDAO
                 $stmt->bindParam(':email', $email);
                 $stmt->execute();
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
-                $stmt->closeCursor();
                 if ($user) {
                     // if (password_verify($password, $user['pswd'])) {
                     if ($password === $user['pswd']) {
@@ -103,6 +103,19 @@ class UtilisateurDAO
             }
         }
         return false;
+    }
+    public function statsAuteurs($role){
+        try {
+            $query = "select count(email) as total_auteur from utilisateur where role=:role";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':role', $role);
+            $stmt->execute();
+            $AutData = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $AutData;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
     }
     public function logout_user()
     {

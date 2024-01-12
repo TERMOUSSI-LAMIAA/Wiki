@@ -106,4 +106,15 @@ class TagDAO
             return false;
         }
     }
+    public function statsTags(){
+        try {
+            $query = "select count(nom_tag) as total_tags from tag";
+            $stmt = $this->db->query($query);
+            $tagsData = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $tagsData;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
 }

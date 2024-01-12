@@ -82,6 +82,17 @@ class CategorieDAO
             }
         }
     }
+    public function statsCatgs(){
+        try {
+            $query = "select count(nom_cat) as total_catgs from categorie";
+            $stmt = $this->db->query($query);
+            $catgsData = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $catgsData;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
     public function delete_categorie($nom_cat)
     {
         try {
