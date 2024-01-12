@@ -6,14 +6,25 @@ class contoller_tag
 {
     function getTagController()
     {
-        $tagDAO = new TagDAO();
-        $tags = $tagDAO->get_tag();
-        include 'view/admin/showTags.php';
+        session_start();
+        if (isset($_SESSION['email']) && $_SESSION['role'] === "admin") {
+            $tagDAO = new TagDAO();
+            $tags = $tagDAO->get_tag();
+            include 'view/admin/showTags.php';
+        } else {
+            echo 'error session';
+        }
+
     }
 
     function addTagController()
     {
-        include 'view\admin\addTag.php';
+        session_start();
+        if (isset($_SESSION['email']) && $_SESSION['role'] === "admin") {
+            include 'view\admin\addTag.php';
+        } else {
+            echo 'error session';
+        }
     }
 
     function addTagControllerAction()
@@ -31,12 +42,18 @@ class contoller_tag
     }
     public function updtTagController()
     {
-        if (isset($_GET['nom_tag'])) {
-            $nom_tag = $_GET['nom_tag'];
-            $tagDAO = new TagDAO();
-            $tag = $tagDAO->getTagByName($nom_tag);
-            include("view/admin/updtTag.php");
+        session_start();
+        if (isset($_SESSION['email']) && $_SESSION['role'] === "admin") {
+            if (isset($_GET['nom_tag'])) {
+                $nom_tag = $_GET['nom_tag'];
+                $tagDAO = new TagDAO();
+                $tag = $tagDAO->getTagByName($nom_tag);
+                include("view/admin/updtTag.php");
+            }
+        } else {
+            echo 'error session';
         }
+
     }
     public function updtTagControllerAction()
     {

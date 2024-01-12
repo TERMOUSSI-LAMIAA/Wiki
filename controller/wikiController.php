@@ -10,37 +10,48 @@ class contoller_wiki
 {
     function getWikiController()
     {
-        $action = isset($_GET['action']) ? $_GET['action'] : 'home';
-        $wikiDAO = new WikiDAO();
-        $wikis = $wikiDAO->get_wiki();
-        $recwikis = $wikiDAO->get_wiki(null, $action);
-        if ($action === 'showWiki') {
-            include 'view/admin/archiveWiki.php';
-        } elseif ($action === 'home') {
-            $catgDAO = new CategorieDAO();
-            $reccatgs = $catgDAO->get_categorie($action);
-            include 'view/home.php';
-        } elseif ($action === 'detailWiki') {
-            if (isset($_GET['id_w'])) {
-                $id_w = $_GET['id_w'];
-                $wiki = $wikiDAO->get_wikiByID($id_w);
-                if ($wiki !== null) {
-                    include 'view/details.php';
-                } else {
-                    echo 'Wiki not found';
+        session_start();
+        if (isset($_SESSION['email']) && $_SESSION['role'] === "admin") {
+            $action = isset($_GET['action']) ? $_GET['action'] : 'home';
+            $wikiDAO = new WikiDAO();
+            $wikis = $wikiDAO->get_wiki();
+            $recwikis = $wikiDAO->get_wiki(null, $action);
+            if ($action === 'showWiki') {
+                include 'view/admin/archiveWiki.php';
+            } elseif ($action === 'home') {
+                $catgDAO = new CategorieDAO();
+                $reccatgs = $catgDAO->get_categorie($action);
+                include 'view/home.php';
+            } elseif ($action === 'detailWiki') {
+                if (isset($_GET['id_w'])) {
+                    $id_w = $_GET['id_w'];
+                    $wiki = $wikiDAO->get_wikiByID($id_w);
+                    if ($wiki !== null) {
+                        include 'view/details.php';
+                    } else {
+                        echo 'Wiki not found';
+                    }
                 }
+            } else {
+                echo 'no action found';
             }
         } else {
-            echo 'no action found';
+            echo 'error session';
         }
+
     }
     function getWikiAutController()
-    { ///!!!!
+    {
         session_start();
-        $email = $_SESSION['email'];
-        $wikiDAO = new WikiDAO();
-        $wikis = $wikiDAO->get_wiki($email);
-        include 'view/auteur/showWiki.php';
+        if (isset($_SESSION['email']) && $_SESSION['role'] === "auteur") {
+            $email = $_SESSION['email'];
+            $wikiDAO = new WikiDAO();
+            $wikis = $wikiDAO->get_wiki($email);
+            include 'view/auteur/showWiki.php';
+        } else {
+            echo 'error session';
+        }
+
     }
 
     function archiveWikiController()
@@ -59,13 +70,19 @@ class contoller_wiki
     }
     function addWikiController()
     {
-        $catgDAO = new CategorieDAO();
-        $catgs = $catgDAO->get_categorie();
-        $auteursDAO = new UtilisateurDAO();
-        $auteurs = $auteursDAO->get_utilisateur('auteur');
-        $tagsDAO = new TagDAO();
-        $tags = $tagsDAO->get_tag();
-        include 'view\auteur\addWiki.php';
+        session_start();
+        if (isset($_SESSION['email']) && $_SESSION['role'] === "auteur") {
+            $catgDAO = new CategorieDAO();
+            $catgs = $catgDAO->get_categorie();
+            $auteursDAO = new UtilisateurDAO();
+            $auteurs = $auteursDAO->get_utilisateur('auteur');
+            $tagsDAO = new TagDAO();
+            $tags = $tagsDAO->get_tag();
+            include 'view\auteur\addWiki.php';
+        } else {
+            echo 'error session';
+        }
+
     }
 
     function addWikiControllerAction()
@@ -85,17 +102,23 @@ class contoller_wiki
     }
     public function updtWikiController()
     {
-        if (isset($_GET['id_w'])) {
-            $id_w = $_GET['id_w'];
-            $wikiDAO = new WikiDAO();
-            $wiki = $wikiDAO->getWikiById($id_w);
-            $catgDAO = new CategorieDAO();
-            $catgs = $catgDAO->get_categorie();
-            $tagDAO = new TagDAO();
-            $tags = $tagDAO->get_tag();
-            $selectedTags = $tagDAO->getTagsByWiki($id_w);
-            include("view/auteur/updateWiki.php");
+        session_start();
+        if (isset($_SESSION['email']) && $_SESSION['role'] === "auteur") {
+            if (isset($_GET['id_w'])) {
+                $id_w = $_GET['id_w'];
+                $wikiDAO = new WikiDAO();
+                $wiki = $wikiDAO->getWikiById($id_w);
+                $catgDAO = new CategorieDAO();
+                $catgs = $catgDAO->get_categorie();
+                $tagDAO = new TagDAO();
+                $tags = $tagDAO->get_tag();
+                $selectedTags = $tagDAO->getTagsByWiki($id_w);
+                include("view/auteur/updateWiki.php");
+            }
+        } else {
+            echo 'error session';
         }
+
     }
     public function updtWikiControllerAction()
     {

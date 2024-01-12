@@ -8,12 +8,12 @@ class contoller_dashboard
     function getDashboardController()
     {
         session_start();
-        if (isset($_SESSION['email'])) {
-            $role = $_SESSION['role'];
+        if (isset($_SESSION['email']) && $_SESSION['role'] === "admin") {
+            // $role = $_SESSION['role'];
             $wikiDAO = new WikiDAO();
             $totWikis = $wikiDAO->statsWikis();
             $userDAO = new UtilisateurDAO();
-            $totAut = $userDAO->statsAuteurs($role);
+            $totAut = $userDAO->statsAuteurs();
             $catgDAO = new CategorieDAO();
             $totCatgs = $catgDAO->statsCatgs();
             $tagDAO = new TagDAO();

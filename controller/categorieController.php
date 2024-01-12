@@ -6,14 +6,26 @@ class contoller_categorie
 {
     function getCatgController()
     {
-        $catgDAO = new CategorieDAO();
-        $catgs = $catgDAO->get_categorie();
-        include 'view/admin/showCatgs.php';
+        session_start();
+        if (isset($_SESSION['email']) && $_SESSION['role'] === "admin") {
+
+            $catgDAO = new CategorieDAO();
+            $catgs = $catgDAO->get_categorie();
+            include 'view/admin/showCatgs.php';
+        } else {
+            echo 'error session';
+        }
     }
 
     function addCatgController()
     {
-        include 'view\admin\addCatg.php';
+        session_start();
+        if (isset($_SESSION['email']) && $_SESSION['role'] === "admin") {
+            include 'view\admin\addCatg.php';
+        } else {
+            echo 'error session';
+        }
+
     }
 
     function addCatgControllerAction()
@@ -31,12 +43,18 @@ class contoller_categorie
     }
     public function updtCatgController()
     {
-        if (isset($_GET['nom_cat'])) {
-            $nom_cat = $_GET['nom_cat'];
-            $catgDAO = new CategorieDAO();
-            $catg = $catgDAO->getCatgByName($nom_cat);
-            include("view/admin/updtCatgs.php");
+        session_start();
+        if (isset($_SESSION['email']) && $_SESSION['role'] === "admin") {
+            if (isset($_GET['nom_cat'])) {
+                $nom_cat = $_GET['nom_cat'];
+                $catgDAO = new CategorieDAO();
+                $catg = $catgDAO->getCatgByName($nom_cat);
+                include("view/admin/updtCatgs.php");
+            }
+        } else {
+            echo 'error session';
         }
+
     }
     public function updtCatgControllerAction()
     {
@@ -59,7 +77,7 @@ class contoller_categorie
         if ($result !== true) {
             $msg = "&error=catNotDeleted";
         }
-        header('Location: index.php?action=showCat'.$msg);
+        header('Location: index.php?action=showCat' . $msg);
         exit;
     }
 }

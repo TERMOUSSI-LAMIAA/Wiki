@@ -104,12 +104,10 @@ class UtilisateurDAO
         }
         return false;
     }
-    public function statsAuteurs($role){
+    public function statsAuteurs(){
         try {
-            $query = "select count(email) as total_auteur from utilisateur where role=:role";
-            $stmt = $this->db->prepare($query);
-            $stmt->bindParam(':role', $role);
-            $stmt->execute();
+            $query = "select count(email) as total_auteur from utilisateur where role='auteur'";
+            $stmt = $this->db->query($query);
             $AutData = $stmt->fetch(PDO::FETCH_ASSOC);
             return $AutData;
         } catch (PDOException $e) {
